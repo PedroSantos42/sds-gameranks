@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.ManyToAny;
@@ -37,7 +37,7 @@ public class Record implements Serializable {
     private Integer age;
     private Instant moment;
 
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name = "game_id")
     private Game game;
 }
