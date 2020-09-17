@@ -1,6 +1,8 @@
 package com.pedrosantos.gameranks.services;
 
 import java.time.Instant;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import com.pedrosantos.gameranks.dto.RecordDTO;
 import com.pedrosantos.gameranks.dto.RecordInsertDTO;
@@ -10,6 +12,8 @@ import com.pedrosantos.gameranks.repositories.GameRepository;
 import com.pedrosantos.gameranks.repositories.RecordRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +25,17 @@ public class RecordService {
 
     @Autowired
     private GameRepository gameRepository;
+
+    @Transactional(readOnly = true)
+	public Page<RecordDTO> findByMoments(Instant minDate, Instant maxDate, PageRequest pageRequest) {
+		return repository.findByMoments(minDate, maxDate, pageRequest).map(rec -> new RecordDTO(rec));
+	}
+
+    public List<RecordDTO> findAll() {
+        List<Record> list = repository.findAll();
+        List<RecordDTO> listDto = list.stream().map(rec -> new RecordDTO(rec)).collect(Collectors.toList());
+        return listDto;
+    }
 
     @Transactional(readOnly = true)
     public RecordDTO insert(RecordInsertDTO dto) {
