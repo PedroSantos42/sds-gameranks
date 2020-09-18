@@ -37,7 +37,6 @@ public class RecordService {
         return listDto;
     }
 
-    @Transactional(readOnly = true)
     public RecordDTO insert(RecordInsertDTO dto) {
         Record entity = new Record();
         entity.setName(dto.getName());
