@@ -35,8 +35,8 @@ public class RecordResource {
         @RequestParam(value = "min", defaultValue = "min") String min,
         @RequestParam(value = "max", defaultValue = "max") String max
     ) {
-        Instant minDate = (min.equals("")) ? null : Instant.parse(min);
-        Instant maxDate = (max.equals("")) ? null : Instant.parse(max);
+        Instant minDate = (min.equals("min")) ? null : Instant.parse(min);
+        Instant maxDate = (max.equals("max")) ? null : Instant.parse(max);
 
         if (linesPerPage == 0) {
             linesPerPage = Integer.MAX_VALUE;
