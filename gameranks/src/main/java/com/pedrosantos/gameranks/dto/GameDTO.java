@@ -17,11 +17,11 @@ public class GameDTO implements Serializable {
 	
 	private Long id;
     private String title;
-    private Platform plataform;
+    private Platform platform;
 
     public GameDTO(Game obj) {
          this.id = obj.getId();
          this.title = obj.getTitle();
-         this.plataform = obj.getPlatform();
+         this.platform = obj.getPlatform();
     }
 }
